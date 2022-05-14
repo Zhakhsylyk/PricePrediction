@@ -1,9 +1,18 @@
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
 
 
 
+
 export default function HomeScreen({navigation}) {
+  const [loaded] = useFonts({
+    Kodchasan: require('../../assets/fonts/Kodchasan-Regular.ttf'),
+    Lato:require('../../assets/fonts/Lato-Bold.ttf'),
+  })
+  if(!loaded){
+    return null;
+  }
   return (
     <View style={styles.container}>
     <ImageBackground source={require('../../assets/background.png')} resizeMode="cover" style={styles.backgroundImage}>
@@ -34,17 +43,18 @@ const styles = StyleSheet.create({
     width: 225, 
     height: 225
   },
+
   titleText: {
     bottom:120,
   },
   titleUpper: {
-    fontFamily: "Lato-Light",
+    fontFamily: "Lato",
     fontWeight:"600",
     fontSize:28,
     
   },
   titleLower:{
-    fontFamily:"Kodchasan-Regular",
+    fontFamily:"Kodchasan",
     fontSize:24,
   },
   backgroundImage: {

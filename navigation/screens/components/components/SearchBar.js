@@ -1,15 +1,17 @@
-import {React,useState} from 'react'
+import {React,useState,useRef} from 'react'
 import {View,Text,TextInput,StyleSheet,Dimensions} from 'react-native'
 import AntIcon from "react-native-vector-icons/AntDesign";
 import { useNavigation } from '@react-navigation/native';
-
+import BottomSheet from "react-native-gesture-bottom-sheet";
 
 
 export const SearchBar = () => {
     const navigation = useNavigation(); 
     const [text, setText] = useState('');
+    const bottomSheet = useRef();
   return (
     <View style={styles.searchSection}>
+    <BottomSheet hasDraggableIcon ref={bottomSheet} height={600} />
     <View>
       <TextInput
         style={styles.TextInput}
@@ -34,7 +36,7 @@ export const SearchBar = () => {
         name="filter"
         size={24}
         color="#A89D9D"
-        onPress={() => navigation.navigate("Filter")}
+        onPress={() => bottomSheet.current.show()}
       />
     </View>
   </View>

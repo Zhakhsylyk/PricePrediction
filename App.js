@@ -13,6 +13,9 @@ import FilterScreen from './navigation/screens/FilterScreen';
 import { MapScreen } from './navigation/screens/MapScreen';
 import { AreaFilter } from './navigation/screens/components/components/AreaFilter';
 import { PriceFilter } from './navigation/screens/components/components/PriceFilter';
+import { Header } from './navigation/screens/components/components/Header';
+import { Example } from './navigation/screens/components/components/Example';
+import Scroll from './navigation/screens/Scroll';
 // import MapScreen from './screens/MapScreen';
 
 
@@ -25,13 +28,14 @@ function App() {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName={"MapScreen"}>
+        initialRouteName={"Home"}>
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Filter" component={FilterScreen} />
         <Stack.Screen name="Area" component={AreaFilter} />
         <Stack.Screen name="Price" component={PriceFilter} />
+        <Stack.Screen name="Scroll" component={Scroll} />
         </Stack.Navigator>
       </NavigationContainer>
     );

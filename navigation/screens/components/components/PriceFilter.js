@@ -11,9 +11,9 @@ export const PriceFilter = () => {
     const [value, setValue] = useState(0);
     return (
          <View style={styles.container}>
-         <Text style={{fontSize:13,fontWeight:'bold',marginTop:100}}> {fromValue} MM KZT - {toValue} MM KZT</Text>
+         <Text style={{fontSize:13,fontWeight:'bold',marginTop:100,left:15}}> {fromValue} MM KZT - {toValue} MM KZT</Text>
 
-              <View  style={{width:300,marginTop:-20}}>
+              <View  style={{width:400,marginTop:-20}}>
                    <RangeSlider 
                    styleSize='small'
                    min={5} max={40}
@@ -30,8 +30,7 @@ export const PriceFilter = () => {
 const styles = StyleSheet.create({
     container : {
         flex:1,
-        alignItems:'center',
-        marginTop:-20,
+        marginTop:-75,
         
     }
 })

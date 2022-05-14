@@ -9,7 +9,6 @@ import {
   Button,
   Dimensions,
   Image,
-  SafeAreaView,
   ScrollView,
 } from "react-native";
 import AntIcon from "react-native-vector-icons/AntDesign";
@@ -18,55 +17,43 @@ import DropDownPicker from "react-native-dropdown-picker";
 import CityFilter from "./components/components/CityFilter";
 import { RoomFilter } from "./components/components/RoomFilter";
 import { PriceFilter } from "./components/components/PriceFilter";
-import { keyboardDismissHandlerManager } from "native-base";
 import { AreaFilter } from "./components/components/AreaFilter";
+import { Header } from "./components/components/Header";
+import { useFonts } from "expo-font";
 
 const { height } = Dimensions.get("window");
 
-export default function MainScreen({ navigation,route }) {
-  const text = route.params.text;
+export default function MainScreen({ navigation }) {
+  const [loaded] = useFonts({
+    Kodchasan: require("../../assets/fonts/Kodchasan-Regular.ttf"),
+    Lato: require("../../assets/fonts/Lato-Bold.ttf"),
+  });
+  if (!loaded) {
+    return null;
+  }
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.searchSection}>
-        <View>
-          <TextInput
-            style={styles.TextInput}
-            placeholderTextColor="gray"
-            placeholder="Astana, Kazakhstan"
-            onChangeText={(text) => setText(text)}
-          ></TextInput>
+    <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.Header}>
+          <Header />
         </View>
-        <View>
-          <AntIcon
-            style={styles.searchIcon}
-            name="search1"
-            size={24}
-            color="#A89D9D"
-          />
-        </View>
-        <View>
-          <AntIcon
-            style={styles.filterIcon}
-            name="filter"
-            size={24}
-            color="#A89D9D"
-            onPress={() => navigation.navigate("Filter")}
-          />
-        </View>
-      </View>
-      <View style={styles.newsContainer}>
+        <Text
+          style={{ fontFamily: "Lato", fontSize: 20, marginTop: 40, left: 20 }}
+        >
+          Select parameters:{" "}
+        </Text>
         <View style={styles.filterBar}>
-        <CityFilter />
-        <RoomFilter />
+          <CityFilter />
+          <RoomFilter />
           <AreaFilter />
-
         </View>
-        <View style={{width:Dimensions.get('window').width}}>
+        <View style={{ width: Dimensions.get("window").width, marginTop: 40 }}>
           <Text
             style={{
+              fontFamily: "Lato",
               fontWeight: "700",
               fontSize: 20,
-              marginLeft: 20,
+              left: 20,
               marginTop: 20,
             }}
           >
@@ -74,34 +61,38 @@ export default function MainScreen({ navigation,route }) {
           </Text>
           <PriceFilter />
         </View>
-        <Text
-          style={{
-            fontWeight: "700",
-            fontSize: 24,
-            position: "absolute",
-            top: -50,
-            left: 20,
-          }}
-        >
-          Analytics
-        </Text>
-        <View style={styles.News}>
+        <View style={styles.newsContainer}>
+          <Text
+            style={{
+              fontSize: 24,
+              left: 20,
+              fontFamily: "Lato",
+              marginBottom: 15,
+            }}
+          >
+            Dashboard
+          </Text>
           <View style={styles.newsItem}>
             <Image
               style={styles.image}
-              resizeMode="contain"
               source={require("../../assets/Nur-sultan.png")}
             />
             <Text style={styles.textTitle}>
               Real Estate Price Statistics,{"\n"}Nur-sultan
             </Text>
           </View>
-        </View>
-        <View style={styles.News}>
           <View style={styles.newsItem}>
             <Image
               style={styles.image}
-              resizeMode="contain"
+              source={require("../../assets/Almaty.png")}
+            />
+            <Text style={styles.textTitle}>
+              Real Estate Price Statistics,{"\n"}Almaty
+            </Text>
+          </View>
+          <View style={styles.newsItem}>
+            <Image
+              style={styles.image}
               source={require("../../assets/Almaty.png")}
             />
             <Text style={styles.textTitle}>
@@ -109,71 +100,35 @@ export default function MainScreen({ navigation,route }) {
             </Text>
           </View>
         </View>
-        <View style={styles.News}>
-          <View style={styles.newsItem}>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={require("../../assets/Almaty.png")}
-            />
-            <Text style={styles.textTitle}>
-              Real Estate Price Statistics,{"\n"}Almaty
-            </Text>
-          </View>
-        </View>
-      </View>
-      <TouchableOpacity
+      </ScrollView>
+      <View style={{flex:1, justifyContent:'center',alignItems:'center',bottom:50}}>
+        <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate("Map")}
-      >
+        >
         <Entypo style={styles.mapIcon} name="map" size={14} color="#fff" />
-
-        <Text style={styles.buttonText}>Map</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        
+        <Text style={styles.buttonText}>Open Map</Text>
+        </TouchableOpacity>
+        </View>
+    </View>
   );
-
-  function onChange() {
-    return (val) => setSelectedTeam(val);
-  }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#fff",
-    overflow: "scroll",
   },
-  searchSection: {
-    padding: 10,
-    paddingTop: 50,
-    backgroundColor: "#17191D",
-    position: "absolute",
+  Header: {
+    // position: "absolute",
     top: 0,
-    display: "flex",
     width: Dimensions.get("window").width,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  TextInput: {
-    backgroundColor: "#FFF",
-    height: 51,
-    width: 310,
-    fontSize: 24,
-    borderRadius: 15,
-    padding: 15,
-  },
-  filterIcon: {},
-  searchIcon: {
-    right: 40,
   },
   filterBar: {
+    top: 30,
     justifyContent: "center",
     zIndex: 1,
     // gap: 10,
-    marginRight: 10,
     display: "flex",
     flexDirection: "row",
   },
@@ -191,62 +146,54 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 340,
-    height: 150,
-    borderRadius: 20,
+    width: 380,
+    height: 240,
+    borderRadius: 10,
   },
   textTitle: {
-    paddingLeft: 20,
+    right: 80,
     paddingTop: 10,
     fontSize: 18,
-    fontWeight: "700",
+    fontFamily: "Lato",
   },
   newsContainer: {
+    marginTop: 30,
     display: "flex",
     flexDirection: "column",
-    position: "absolute",
-    top: 200,
-  },
-  News: {
-    zIndex: 2,
-    backgroundColor: "#F6F5F5",
-    marginBottom: 30,
-    position: "relative",
-    width: 360,
-    height: 246,
-    borderRadius: 30,
-  },
-  newsItem: {
-    position: "relative",
-    top: 20,
   },
   button: {
+    
     display: "flex",
     flexDirection: "row",
-    height: 40,
-    width: 100,
+    height: 50,
+    width: 150,
+    backgroundColor: "#4EB058",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 45,
-    backgroundColor: "#4EB058",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    position: "absolute",
-    shadowColor: "#000",
+    borderRadius: 20,
+    shadowColor: "#5ee083",
+    shadowOpacity: 0.7,
     shadowOffset: {
-      width: 0,
-      height: 7,
+      height: 4,
+      width: 4,
     },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-
-    elevation: 15,
+    shadowRadius: 5,
+    elevation: 6,
   },
   buttonText: {
-    color: "#FFF",
+    color: "white",
+    fontSize:18,
+    fontFamily:'Lato',
+    right:1,
   },
   mapIcon: {
-    marginRight: 10,
+    right:10,
   },
+  newsItem: {
+    marginBottom: 40,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
 });

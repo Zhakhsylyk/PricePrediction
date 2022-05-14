@@ -9,8 +9,8 @@ export const Map = () => {
     <View style={styles.container}>
     <MapView style={styles.map} 
     initialRegion={{
-      latitude: 48,
-      longitude: 68,
+      latitude: 43.238949,
+      longitude: 76.889709,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     }}/>

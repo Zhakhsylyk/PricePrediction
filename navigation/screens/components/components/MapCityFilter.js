@@ -2,8 +2,7 @@ import { React, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { city } from "./city";
-
-function CityFilter() {
+function MapCityFilter() {
   const [cityName, setcityName] = useState("");
   const cityList = city.map((city) => (
     <Picker.Item label={city.label} value={city.value} />
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     height: 100,
-    bottom: 20,
+    bottom: 80,
     left: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -37,4 +36,4 @@ const styles = StyleSheet.create({
     width: 174,
   },
 });
-export default CityFilter;
+export default MapCityFilter;

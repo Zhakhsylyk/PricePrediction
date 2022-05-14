@@ -4,7 +4,7 @@ import { Picker } from "@react-native-picker/picker";
 import { room } from "./room";
 
 
-export const RoomFilter = () => {
+export const MapRoomFilter = () => {
   const [numRoom, setNumRoom] = useState("");
   const roomList = room.map((room) => (
     <Picker.Item label={room.label} value={room.value} />
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 screen: {
   flex: 1,
   height:100,
-  bottom:20,
+  top:1,
   left:28,
   justifyContent: "center",
   alignItems: "center",
