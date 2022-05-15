@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { city } from "./city";
+import { city } from "../constants/city";
 
 function CityFilter() {
   const [cityName, setcityName] = useState("");

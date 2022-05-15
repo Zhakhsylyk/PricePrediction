@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+
   "dependencies": {
     "@jesster2k10/react-native-range-slider": "^0.3.1",
     "@react-native-community/datetimepicker": "^6.1.3",

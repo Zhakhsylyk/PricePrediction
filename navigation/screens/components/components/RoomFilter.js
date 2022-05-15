@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { room } from "./room";
+import { room } from "../constants/room";
 
 
 export const RoomFilter = () => {

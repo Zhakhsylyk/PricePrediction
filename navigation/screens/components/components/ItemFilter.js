@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import { city } from "./city";
+import { city } from "../constants/city";
 import { Text, View } from "react-native";
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'

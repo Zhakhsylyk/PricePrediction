@@ -8,6 +8,7 @@ export const Map = () => {
   return (
     <View style={styles.container}>
     <MapView style={styles.map} 
+    provider = { MapView.PROVIDER_GOOGLE }
     initialRegion={{
       latitude: 43.238949,
       longitude: 76.889709,

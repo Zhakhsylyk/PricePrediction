@@ -3,10 +3,14 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Foundation from "react-native-vector-icons/Foundation";
+import IonIcons from "react-native-vector-icons/Ionicons";
+import { useNavigation } from '@react-navigation/native';
+
 
 
 
 export const Header = () => {
+    const navigation = useNavigation(); 
     const [loaded] = useFonts({
        Kodchasan: require('../../../../assets/fonts/Kodchasan-Bold.ttf'), 
        Lato_Black: require('../../../../assets/fonts/Lato-Black.ttf'),
@@ -17,6 +21,14 @@ export const Header = () => {
     }
   return (
     <View style={styles.container}>
+    <View style={styles.flexContainer}>
+    <IonIcons
+    style={styles.backIcon}
+    name = "arrow-back"
+    size={34}
+    color="#fff"
+    onPress={() => navigation.navigate('Home')}
+    />
     <Text style={styles.headerText}>Welcome</Text>
     <View style={styles.iconItem}>
     <Foundation
@@ -33,6 +45,7 @@ export const Header = () => {
     />
     </View>
     </View>
+    </View>
   )
 }
 const styles = StyleSheet.create({
@@ -41,8 +54,13 @@ container : {
     backgroundColor:'#4EB058',
     height:100,
 },
+
+flexContainer: {
+    top:50,
+    display:'flex',
+    flexDirection:'row',
+},
 headerText: {
-    top:60,
     flex:1,
     textAlign:'center',
     fontSize:24,
@@ -52,14 +70,15 @@ headerText: {
 },
 
 iconItem:{
-    // position:'relative',
-    left:'88%',
-    bottom:15,
+      right:15,
 },
 
 tagIcon: {
    position:'absolute',
    left:20,
    top:5,
+},
+backIcon: {
+    left:10,
 }
 })

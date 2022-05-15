@@ -3,6 +3,7 @@ import {View,Text,TextInput,StyleSheet,Dimensions} from 'react-native'
 import AntIcon from "react-native-vector-icons/AntDesign";
 import { useNavigation } from '@react-navigation/native';
 import BottomSheet from "react-native-gesture-bottom-sheet";
+import IonIcons from "react-native-vector-icons/Ionicons";
 
 
 export const SearchBar = () => {
@@ -11,7 +12,14 @@ export const SearchBar = () => {
     const bottomSheet = useRef();
   return (
     <View style={styles.searchSection}>
-    <BottomSheet hasDraggableIcon ref={bottomSheet} height={600} />
+    <IonIcons
+    style={styles.backIcon}
+    name = "arrow-back"
+    size={34}
+    color="#FFF"
+    onPress={() => navigation.navigate('Main')}
+    />
+    <BottomSheet hasDraggableIcon ref={bottomSheet} height={800} />
     <View>
       <TextInput
         style={styles.TextInput}
@@ -35,7 +43,7 @@ export const SearchBar = () => {
         style={styles.filterIcon}
         name="filter"
         size={24}
-        color="#A89D9D"
+        color="#FFF"
         onPress={() => bottomSheet.current.show()}
       />
     </View>
@@ -45,8 +53,9 @@ export const SearchBar = () => {
 const styles = StyleSheet.create({
     searchSection: {
         padding: 10,
+        paddingBottom:13,
         paddingTop: 50,
-        // backgroundColor: "#17191D",
+        backgroundColor: "#4EB058",
         position: "absolute",
         top: 0,
         display: "flex",
@@ -62,9 +71,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         borderRadius: 15,
         padding: 15,
+        left:5,
       },
-      filterIcon: {},
+      filterIcon: {
+        right:5,
+      },
       searchIcon: {
-        right: 40,
+        right: 30,
       },
 })
