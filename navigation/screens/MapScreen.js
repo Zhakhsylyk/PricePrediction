@@ -1,7 +1,7 @@
 import React from 'react'
 import {View,Text,Dimensions,StyleSheet} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Map } from './components/components/Map'
+import { Map, Marker } from './components/components/Map'
 import { SearchBar } from './components/components/SearchBar'
 
 export const MapScreen = () => {

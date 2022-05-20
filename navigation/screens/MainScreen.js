@@ -20,6 +20,7 @@ import { PriceFilter } from "./components/components/PriceFilter";
 import { AreaFilter } from "./components/components/AreaFilter";
 import { Header } from "./components/components/Header";
 import { useFonts } from "expo-font";
+import { TypeFilter } from "./components/components/TypeFilter";
 
 const { height } = Dimensions.get("window");
 
@@ -45,8 +46,9 @@ export default function MainScreen({ navigation }) {
         <View style={styles.filterBar}>
           <CityFilter />
           <RoomFilter />
-          <AreaFilter />
+          <TypeFilter />
         </View>
+
         <View style={{ width: Dimensions.get("window").width, marginTop: 40 }}>
           <Text
             style={{
@@ -126,11 +128,13 @@ const styles = StyleSheet.create({
   },
   filterBar: {
     top: 30,
-    justifyContent: "center",
-    zIndex: 1,
-    // gap: 10,
+    height:60,
+    flexWrap:'wrap',
+    zIndex:10,
     display: "flex",
     flexDirection: "row",
+    width:380,
+
   },
   txtinput: {
     textAlign: "center",

@@ -2,41 +2,48 @@ import { React, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { room } from "../constants/room";
+import DropDownPicker from 'react-native-dropdown-picker';
 
 
 export const RoomFilter = () => {
-  const [numRoom, setNumRoom] = useState("");
-  const roomList = room.map((room) => (
-    <Picker.Item label={room.label} value={room.value} />
-  ));
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: '1-комнатн.', value: '1-комнатная'},
+    {label: '2-комнатн.', value: '2-комнатная'},
+    {label: '3-комнатн.', value: '3-комнатная'}
+  ]);
+
   return (
     <View style={styles.screen}>
-    <Picker
-      selectedValue={numRoom}
-      onValueChange={(value, index) => setNumRoom(value)}
-      mode="dropdown"
-      style={styles.picker}
-    >
-      {roomList}
-    </Picker>
-  </View>
-);
-};
+    <DropDownPicker
+    containerStyle={{
+      width:137,
+    }}
+    placeholder="No.Rooms"
+    placeholderStyle={{
+      color: "#D2D2D2",
+      fontWeight: "bold"
+    }}
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      />
+  { /*<Text>Your room: {value}</Text> */ }
+
+      </View>
+  );
+}
 const styles = StyleSheet.create({
-screen: {
-  flex: 1,
-  height:100,
-  bottom:20,
-  left:28,
-  justifyContent: "center",
-  alignItems: "center",
-},
-text: {
-  fontSize: 24,
-  
-},
-picker: {
-  width: 135,
-  
-},
+  screen: {
+    flex: 1,
+    width:180,
+    left:10,
+  },
+  text: {
+    fontSize: 24,
+  },
 });

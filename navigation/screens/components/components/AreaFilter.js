@@ -14,6 +14,7 @@ export const AreaFilter = () => {
         values={area}
         onChange={(values) => setArea(values)}
       />
+    { /*<Text>Your area: {}</Text> */}
     </View>
   );
 };

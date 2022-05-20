@@ -23,7 +23,6 @@ export const PriceFilter = () => {
                         initialToValue={40}
                    />
               </View>
-                        
               </View>
     );
 }

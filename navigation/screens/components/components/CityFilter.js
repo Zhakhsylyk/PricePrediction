@@ -1,40 +1,49 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { city } from "../constants/city";
+import DropDownPicker from 'react-native-dropdown-picker';
+
 
 function CityFilter() {
-  const [cityName, setcityName] = useState("");
-  const cityList = city.map((city) => (
-    <Picker.Item label={city.label} value={city.value} />
-  ));
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Алматы', value: 'Алматы'},
+    {label: 'Шымкент', value: 'Шымкент'},
+    {label: 'Нур-Султан', value: 'Нур-султан'}
+  ]);
+
   return (
     <View style={styles.screen}>
-      <Picker
-        selectedValue={cityName}
-        onValueChange={(value, index) => setcityName(value)}
-        mode="dropdown"
-        style={styles.picker}
-      >
-        {cityList}
-      </Picker>
-    </View>
+    <DropDownPicker
+    containerStyle={{
+      width:133,
+    }}
+    
+    placeholder="City"
+    placeholderStyle={{
+      color: "#D2D2D2",
+      fontWeight: "bold"
+    }}
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      />
+      { /*<Text>Your city: {value}</Text> */}
+      </View>
   );
 }
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    height: 100,
-    bottom: 20,
-    left: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    left:1,
   },
   text: {
     fontSize: 24,
-  },
-  picker: {
-    width: 174,
   },
 });
 export default CityFilter;
