@@ -3,16 +3,20 @@ import { View, Text, StyleSheet } from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-export const TypeFilter = (props) => {
+export const TypeFilterHM = (props) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-      {label: 'кирпичный', value: '0'},
-      {label: 'панельный', value: '1'},
-      {label: 'монолитный', value: '2'},
-      {label: 'иное', value: '3'},
+      {label: 'монолитный', value: 'монолитный'},
+      {label: 'кирпичный', value: 'кирпичный'},
+      {label: 'панельный', value: 'панельный'},
+      {label: 'иное', value: 'иное'}
     ]);
-  props.passType(value);
+    
+    const functionHandler = (value) => {
+      props.passTypeHM(value);
+    }
+
     return (
       <View style={styles.screen}>
       <DropDownPicker
@@ -31,12 +35,15 @@ export const TypeFilter = (props) => {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
+        onChangeValue={functionHandler}
         />
           { /*<Text>Your type: {value}</Text> */ }
 
         </View>
     );
+    
   }
+ 
   const styles = StyleSheet.create({
     screen: {
         flex: 1,
@@ -50,3 +57,6 @@ export const TypeFilter = (props) => {
       width: 174,
     },
   });
+
+
+  export default TypeFilterHM;

@@ -1,23 +1,22 @@
 import { React, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { city } from "../constants/city";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-function CityFilter(props) {
+function CityFilterHM(props) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Шымкент', value: '0'},
-    {label: 'Алматы', value: '1'},
-    {label: 'Нур-Султан', value: '2'}
+    {label: 'Алматы', value: 'Алматы'},
+    {label: 'Шымкент', value: 'Шымкент'},
+    {label: 'Нур-Султан', value: 'Нур-Султан (Астана)'}
   ]);
 
-  props.passCity(value)
-  
+  const functionHandler = (value) => {
+    props.passCityHM(value);
+  }
 
-  
   return (
     <View style={styles.screen}>
     <DropDownPicker
@@ -36,7 +35,7 @@ function CityFilter(props) {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-
+      onChangeValue={functionHandler}
       />
       { /*<Text>Your city: {value}</Text> */}
       </View>
@@ -51,4 +50,4 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
-export default CityFilter;
+export default CityFilterHM;

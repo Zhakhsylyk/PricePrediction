@@ -19,24 +19,17 @@ export const SearchBar = () => {
     color="#FFF"
     onPress={() => navigation.navigate('Main')}
     />
-    <BottomSheet hasDraggableIcon ref={bottomSheet} height={800} />
+    <BottomSheet hasDraggableIcon ref={bottomSheet} height={200} />
     <View>
-      <TextInput
-        style={styles.TextInput}
-        placeholderTextColor="gray"
-        placeholder="Astana, Kazakhstan"
-        returnKeyType="search"
-        onSubmitEditing={() => navigation.navigate('Main',{text:text})}
-        onChangeText={text => setText(text)}
-      ></TextInput>
+     <Text style={{fontSize:18,color:"#fff", fontWeight:'bold', textTransform:'uppercase'}}>Find apartments nearby</Text>
     </View>
     <View>
-      <AntIcon
+      {/* <AntIcon
         style={styles.searchIcon}
         name="search1"
         size={24}
         color="#A89D9D"
-      />
+      /> */}
     </View>
     <View>
       <AntIcon
@@ -74,9 +67,9 @@ const styles = StyleSheet.create({
         left:5,
       },
       filterIcon: {
-        right:5,
+        left:40,
       },
-      searchIcon: {
-        right: 30,
+      backIcon: {
+        right: 45,
       },
 })

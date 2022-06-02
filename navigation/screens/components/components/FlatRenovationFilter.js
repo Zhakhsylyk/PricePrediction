@@ -1,20 +1,21 @@
 import { React, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { city } from "../constants/city";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-function CityFilter(props) {
+function FlatRenovationFilter(props) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Шымкент', value: '0'},
-    {label: 'Алматы', value: '1'},
-    {label: 'Нур-Султан', value: '2'}
+    {label: 'свободная планировка', value: '0'},
+    {label: 'среднее', value: '1'},
+    {label: 'требует ремонта', value: '2'},
+    {label: 'хорошее', value: '3'},
+    {label: 'черновая отделка', value: '4'},
   ]);
 
-  props.passCity(value)
+  props.passFlatRenovation(value)
   
 
   
@@ -25,7 +26,7 @@ function CityFilter(props) {
       width:133,
     }}
     
-    placeholder="City"
+    placeholder="Flat Renovation"
     placeholderStyle={{
       color: "#D2D2D2",
       fontWeight: "bold"
@@ -38,7 +39,6 @@ function CityFilter(props) {
       setItems={setItems}
 
       />
-      { /*<Text>Your city: {value}</Text> */}
       </View>
   );
 }
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
-export default CityFilter;
+export default FlatRenovationFilter;

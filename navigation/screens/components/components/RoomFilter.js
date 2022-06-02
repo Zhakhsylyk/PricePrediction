@@ -5,14 +5,16 @@ import { room } from "../constants/room";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-export const RoomFilter = () => {
+export const RoomFilter = (props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: '1-комнатн.', value: '1-комнатная'},
-    {label: '2-комнатн.', value: '2-комнатная'},
-    {label: '3-комнатн.', value: '3-комнатная'}
+    {label: '1-комнатн.', value: '1'},
+    {label: '2-комнатн.', value: '2'},
+    {label: '3-комнатн.', value: '3'}
   ]);
+
+  props.passRoom(value);
 
   return (
     <View style={styles.screen}>

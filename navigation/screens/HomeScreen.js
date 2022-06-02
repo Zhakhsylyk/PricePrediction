@@ -1,11 +1,20 @@
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 
 
 
 
 export default function HomeScreen({navigation}) {
+  let [responseData, setResponseData] = useState('')
+  axios({
+    method: 'get',
+    url: 'http://192.168.0.102:5000/house/1',
+  }).then((response) => {
+   setResponseData(response.data)
+  });
   const [loaded] = useFonts({
     Kodchasan: require('../../assets/fonts/Kodchasan-Regular.ttf'),
     Lato:require('../../assets/fonts/Lato-Bold.ttf'),
@@ -25,6 +34,7 @@ export default function HomeScreen({navigation}) {
   <View style={styles.titleText}>
   <Text style={styles.titleUpper}>House Price Prediction</Text>
   <Text style={styles.titleLower}>Analytics</Text>
+  <Text>{responseData.address}</Text>
   </View>
   <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}><Text style={styles.buttonText}>Get started</Text></TouchableOpacity>
   <StatusBar style="auto" />

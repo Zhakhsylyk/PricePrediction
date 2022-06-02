@@ -1,16 +1,17 @@
 export const data = [
     {
+     "city": 'Нур-Султан',
      "latitude":51.139999,
      "longitude":71.467049,
-      "title":'ilyas',
     },
     {
-        "latitude":51.0893456,
-        "longitude":71.4160037,
-        "title":'alikhan',
+        "city": 'Алматы',
+        "latitude":43.238949,
+        "longitude":76.88970,
     },
     {
-        "latitude":51.139999,
-        "longitude":71.467049
+        "city": 'Шымкент',
+        "latitude":42.340782,
+        "longitude":69.596329
     },
 ]

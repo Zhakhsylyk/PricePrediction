@@ -1,31 +1,30 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { city } from "../constants/city";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-function CityFilter(props) {
+export const RoomFilterHM = (props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Шымкент', value: '0'},
-    {label: 'Алматы', value: '1'},
-    {label: 'Нур-Султан', value: '2'}
+    {label: '1-комнатн.', value: 1},
+    {label: '2-комнатн.', value: 2},
+    {label: '3-комнатн.', value: 3}
   ]);
-
-  props.passCity(value)
   
 
-  
+  const functionHandler = (value) => {
+    props.passRoomHM(value);
+  }
+
   return (
     <View style={styles.screen}>
     <DropDownPicker
     containerStyle={{
-      width:133,
+      width:137,
     }}
-    
-    placeholder="City"
+    placeholder="No.Rooms"
     placeholderStyle={{
       color: "#D2D2D2",
       fontWeight: "bold"
@@ -36,19 +35,22 @@ function CityFilter(props) {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-
+      onChangeValue={functionHandler}
       />
-      { /*<Text>Your city: {value}</Text> */}
+  { /*<Text>Your room: {value}</Text> */ }
+
       </View>
   );
 }
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    left:1,
+    width:180,
+    left:10,
   },
   text: {
     fontSize: 24,
   },
 });
-export default CityFilter;
+
+export default RoomFilterHM;
